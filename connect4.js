@@ -18,10 +18,8 @@ const board = []; // array of rows, each row is array of cells  (board[y][x])
 
 function makeBoard(){
   for (let y = 0; y < HEIGHT; y++){
+    board[y] = [];
     for (let x = 0; x < WIDTH; x++){
-      if (!board[y]){
-        board[y] = [];
-      }
       board[y][x] = null;
     }
   }
@@ -167,7 +165,9 @@ function reset(){
     }
   }
   // reset HTML board
-  Array.from(document.querySelectorAll('td div.piece')).forEach((el) => el.remove());
+  document.querySelector("#board").innerHTML = '';
+  makeBoard();
+  makeHtmlBoard();
   // reset starting player
   currPlayer = 1;
   isOver = false;
